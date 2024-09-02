@@ -1,0 +1,96 @@
+Este projeto visa criar um sistema de banco de dados para gerenciar informações escolares. O sistema permite registrar dados sobre alunos, cursos e notas, além de realizar consultas, atualizações e exclusões de registros. O banco de dados é projetado para fornecer uma visão clara e organizada das informações escolares e permite operações básicas de gerenciamento.
+
+Requisitos do Sistema:
+
+Banco de Dados: Criar um banco de dados chamado Escola.
+Tabelas:
+Alunos: Armazena dados sobre os alunos, incluindo nome, data de nascimento e email.
+Cursos: Armazena informações sobre os cursos, incluindo nome e descrição.
+Notas: Registra as notas dos alunos em cada curso, vinculando alunos e cursos.
+Operações:
+Inserir dados em cada tabela.
+Consultar dados para listar alunos com suas notas e cursos com alunos matriculados.
+Atualizar notas de alunos.
+Excluir registros de alunos e cursos, incluindo notas associadas.
+Passos para Implementação:
+
+Criar o banco de dados e as tabelas conforme o esquema definido.
+Inserir dados em todas as tabelas para teste e demonstração.
+Executar consultas para visualizar as informações armazenadas.
+Atualizar dados conforme necessário para refletir as mudanças.
+Excluir dados de maneira segura, garantindo que todas as referências sejam tratadas corretamente.
+# Sistema de Gestão Escolar
+
+## Descrição
+
+Este projeto implementa um sistema de banco de dados para gerenciamento de informações escolares. Ele inclui três tabelas principais: `Alunos`, `Cursos`, e `Notas`, permitindo o armazenamento e manipulação de dados sobre alunos, cursos oferecidos e as notas dos alunos.
+
+## Estrutura do Banco de Dados
+
+O banco de dados `Escola` contém as seguintes tabelas:
+
+1. **Alunos**
+   - `AlunoID` (INT, AUTO_INCREMENT, PRIMARY KEY)
+   - `Nome` (VARCHAR(100), NOT NULL)
+   - `DataNascimento` (DATE)
+   - `Email` (VARCHAR(100))
+
+2. **Cursos**
+   - `CursoID` (INT, AUTO_INCREMENT, PRIMARY KEY)
+   - `Nome` (VARCHAR(100), NOT NULL)
+   - `Descricao` (TEXT)
+
+3. **Notas**
+   - `NotaID` (INT, AUTO_INCREMENT, PRIMARY KEY)
+   - `AlunoID` (INT, FOREIGN KEY referenciando `Alunos(AlunoID)`)
+   - `CursoID` (INT, FOREIGN KEY referenciando `Cursos(CursoID)`)
+   - `Nota` (DECIMAL(5, 2))
+
+## Instruções de Uso
+
+1. **Configuração Inicial**
+   - Execute os comandos SQL fornecidos no script para criar o banco de dados, tabelas e inserir dados de exemplo.
+
+2. **Consultas**
+   - **Listar todos os alunos com suas notas em cada curso:**
+     ```sql
+     SELECT Alunos.Nome AS Aluno, Cursos.Nome AS Curso, Notas.Nota
+     FROM Notas
+     JOIN Alunos ON Notas.AlunoID = Alunos.AlunoID
+     JOIN Cursos ON Notas.CursoID = Cursos.CursoID;
+     ```
+   - **Listar todos os cursos e os alunos matriculados neles:**
+     ```sql
+     SELECT Cursos.Nome AS Curso, Alunos.Nome AS Aluno
+     FROM Notas
+     JOIN Cursos ON Notas.CursoID = Cursos.CursoID
+     JOIN Alunos ON Notas.AlunoID = Alunos.AlunoID;
+     ```
+
+3. **Atualizações**
+   - Atualize a nota de um aluno em um curso específico:
+     ```sql
+     UPDATE Notas
+     SET Nota = 9.0
+     WHERE AlunoID = 1 AND CursoID = 1;
+     ```
+
+4. **Exclusões**
+   - Remova um aluno e as notas associadas a ele:
+     ```sql
+     DELETE FROM Notas WHERE AlunoID = 3;
+     DELETE FROM Alunos WHERE AlunoID = 3;
+     ```
+   - Remova um curso e as notas associadas a ele:
+     ```sql
+     DELETE FROM Notas WHERE CursoID = 2;
+     DELETE FROM Cursos WHERE CursoID = 2;
+     ```
+
+## Contribuição
+
+Para contribuir com melhorias e correções, faça um fork deste repositório e envie um pull request com suas alterações.
+
+## Licença
+
+Este projeto está licenciado sob a MIT License. Veja o arquivo LICENSE para mais detalhes.
