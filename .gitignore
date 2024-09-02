@@ -1,0 +1,25 @@
+# Ignorar arquivos e pastas que não devem ser versionados
+
+# Arquivos de banco de dados
+*.db
+*.sqlite
+
+# Arquivos de backup e logs
+*.bak
+*.log
+
+# Arquivos temporários
+*.tmp
+*.swp
+
+# Arquivos específicos do editor
+*.sublime-project
+*.sublime-workspace
+*.vscode/
+
+# Diretórios do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos específicos do sistema operacional
+desktop.ini
